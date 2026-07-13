@@ -250,3 +250,12 @@ footer{
 }
 
 }
+window.addEventListener("load", async () => {
+  await Clerk.load();
+
+  if (Clerk.user) {
+    Clerk.mountUserButton(document.getElementById("clerk-auth"));
+  } else {
+    Clerk.mountSignIn(document.getElementById("clerk-auth"));
+  }
+});
