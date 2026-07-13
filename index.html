@@ -7,8 +7,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Phoenix Academy</title>
+<script
+  defer
+  crossorigin="anonymous"
+  src="https://hopeful-moose-25.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js"
+  type="text/javascript">
+</script>
 
-<meta name="google-site-verification" content="UzgPgNfRsKNepRWnvcsJhyxE1Yu4m-i61A__m-4sKpY" />
+<script
+  defer
+  crossorigin="anonymous"
+  data-clerk-publishable-key="pk_test_aG9wZWZ1bC1tb29zZS0yNS5jbGVyay5hY2NvdW50cy5kZXYk"
+  src="https://hopeful-moose-25.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js"
+  type="text/javascript">
+</script>
 
 <style>
 *{
@@ -21,7 +33,7 @@
 body{
     background:#f2f2f2;
     color:#222;
-}
+}  
 
 /* HEADER */
 
@@ -212,6 +224,7 @@ footer{
 
 <div class="logo">
 🔥 Phoenix Academy
+    <div id="clerk-auth"></div>
 </div>
 
 <button onclick="showPage('login')">
