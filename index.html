@@ -426,16 +426,13 @@ Add Task
 <div id="login" class="page">
 
 <h2>🔐 Student Login</h2>
-
-<
+<div id="clerk-auth"></div>
 </div>
 
 <footer>
 
-© 2026 Phoenix Academy | All Rights Reserved
-
+© 2026 Phoenix Academy | All Rights Reserved 
 </footer>
-
 <script>
 
 function showPage(id){
@@ -512,25 +509,202 @@ document.getElementById("courseProgress")
 
 function searchCourses(){
 
-let input=document
-.getElementById("searchCourse")
-.value.toLowerCase();
+<script>
 
-let courses=document
-.querySelectorAll(".course");
+function showPage(id){
 
-courses.forEach(course=>{
+document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+});
 
-let text=course.innerText.toLowerCase();
+document.getElementById(id).classList.add("active");
 
-course.style.display=
-text.includes(input)
-? "block"
-: "none";
+}
+
+
+function loginUser(){
+
+document.getElementById("loginMsg").innerText="✅ Login Successful";
+
+}
+
+
+function saveNotes(){
+
+let notes=document.getElementById("notesBox").value;
+
+localStorage.setItem("phoenixNotes",notes);
+
+document.getElementById("notesMsg").innerText="✅ Notes Saved";
+
+}
+
+
+window.onload=function(){
+
+let saved=localStorage.getItem("phoenixNotes");
+
+if(saved){
+document.getElementById("notesBox").value=saved;
+}
+
+}
+
+
+function addTask(){
+
+let input=document.getElementById("taskInput");
+
+if(input.value.trim()=="") return;
+
+let li=document.createElement("li");
+
+li.innerText=input.value;
+
+document.getElementById("taskList").appendChild(li);
+
+input.value="";
+
+}
+
+
+let progress=20;
+
+function increaseProgress(){
+
+if(progress<100){
+
+progress+=10;
+
+document.getElementById("courseProgress").style.width=progress+"%";
+
+}
+
+}
+
+
+<script>
+
+function showPage(id){
+
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+
+function saveNotes(){
+
+    let notes = document.getElementById("notesBox").value;
+
+    localStorage.setItem("phoenixNotes", notes);
+
+    document.getElementById("notesMsg").innerText = "✅ Notes Saved";
+
+}
+
+
+window.onload = function(){
+
+    let saved = localStorage.getItem("phoenixNotes");
+
+    if(saved){
+        document.getElementById("notesBox").value = saved;
+    }
+
+};
+
+
+function addTask(){
+
+    let input = document.getElementById("taskInput");
+
+    if(input.value.trim()=="") return;
+
+    let li = document.createElement("li");
+
+    li.innerText = input.value;
+
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+
+}
+
+
+
+let progress = 20;
+
+
+function increaseProgress(){
+
+    if(progress < 100){
+
+        progress += 10;
+
+        document.getElementById("courseProgress").style.width = progress + "%";
+
+    }
+
+}
+
+
+
+function searchCourses(){
+
+    let input = document
+    .getElementById("searchCourse")
+    .value
+    .toLowerCase();
+
+
+    let courses = document.querySelectorAll(".course");
+
+
+    courses.forEach(course=>{
+
+        let text = course.innerText.toLowerCase();
+
+
+        course.style.display =
+        text.includes(input)
+        ? "block"
+        : "none";
+
+    });
+
+}
+
+
+
+// CLERK LOGIN
+
+window.addEventListener("load", async function(){
+
+    await Clerk.load();
+
+    const clerkAuth = document.getElementById("clerk-auth");
+
+
+    if(!clerkAuth) return;
+
+
+    if(Clerk.user){
+
+        Clerk.mountUserButton(clerkAuth);
+
+    }
+    else{
+
+        Clerk.mountSignIn(clerkAuth);
+
+    }
 
 });
 
-}
 
 </script>
 
