@@ -238,3 +238,28 @@ window.addEventListener("load", async function(){
 
 
 });
+    window.addEventListener("load", async () => {
+
+    await Clerk.load();
+
+    const loginBox = document.getElementById("clerk-auth");
+
+
+    if(!loginBox){
+        console.log("Login box not found");
+        return;
+    }
+
+
+    if(Clerk.user){
+
+        Clerk.mountUserButton(loginBox);
+
+    }
+    else{
+
+        Clerk.mountSignIn(loginBox);
+
+    }
+
+});
